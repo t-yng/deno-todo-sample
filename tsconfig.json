@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ESNEXT",
+    "module": "ESNext",
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

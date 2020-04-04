@@ -1,0 +1,30 @@
+{
+  "name": "deno-todo-sample",
+  "version": "1.0.0",
+  "description": "This is Todo sample application with Deno to study.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint server/**",
+    "fix": "eslint server/** --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t-yng/deno-todo-sample.git"
+  },
+  "author": "t-yng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/t-yng/deno-todo-sample/issues"
+  },
+  "homepage": "https://github.com/t-yng/deno-todo-sample#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^2.0.2",
+    "typescript": "^3.8.3"
+  }
+}
