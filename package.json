@@ -8,6 +8,16 @@
     "lint": "eslint server/**",
     "fix": "eslint server/** --fix"
   },
+  "lint-staged": {
+    "*.ts": [
+      "npm run fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/t-yng/deno-todo-sample.git"
@@ -24,6 +34,8 @@
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.1",
     "prettier": "^2.0.2",
     "typescript": "^3.8.3"
   }
