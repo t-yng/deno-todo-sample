@@ -9,7 +9,7 @@ curlでAPIを叩く
 
 ### 環境構築TODO
 * Docker構築
-  * [ ] Denoの開発環境
+  * [x] Denoの開発環境
   * [ ] MySQL構築
 
 ### 実装TODO
