@@ -1,12 +1,11 @@
-import { serve } from 'https://deno.land/std/http/server.ts';
+import {
+  Application,
+} from './package.ts';
 
-const s = serve({
-  hostname: '0.0.0.0',
-  port: 8000
+const app = new Application();
+
+app.use(ctx => {
+  ctx.response.body = "Hello World 🦕";
 });
 
-console.log('Start server 🦕');
-
-for await (const req of s) {
-  req.respond({ body: 'Hello World 🦕' });
-}
+await app.listen({ hostname: '0.0.0.0', port: 8000 });
