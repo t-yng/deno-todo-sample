@@ -10,15 +10,15 @@ const todos = {
         },
         {
             id: 2,
-            content: '漫画を捨てる'
-        }
-    ]
+            content: '漫画を捨てる',
+        },
+    ],
 };
 
 router
-  .get('/', ctx => {
-      ctx.response.body = 'Hello, World 🦕';
-  })
-  .get('/api/todos', ctx => {
-      ctx.response.body = JSON.stringify(todos);
-  });
+    .get('/', (ctx) => {
+        ctx.response.body = 'Hello, World 🦕';
+    })
+    .get('/api/todos', (ctx) => {
+        ctx.response.body = JSON.stringify(todos);
+    });
