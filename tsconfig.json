@@ -1,3 +1,5 @@
+// 「color-name の型定義がないよ」と言っているが、
+// こちらが使用するために追加したものでもないので、types を追加して型定義をみないようにした。
 {
   "compilerOptions": {
     "target": "ESNEXT",
