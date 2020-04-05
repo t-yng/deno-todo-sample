@@ -1,11 +1,27 @@
-version: '3'
+version: "3"
 services:
-  deno:
-    build:
-        context: .
-        dockerfile: ./docker/deno/Dockerfile
-    volumes:
-      - ./server:/app
-    ports:
-      - "8000:8000"
-    tty: true
+    deno:
+        build:
+            context: .
+            dockerfile: ./docker/deno/Dockerfile
+        volumes:
+            - ./server:/app
+        ports:
+            - "8000:8000"
+        depends_on:
+            - mysql
+        tty: true
+    mysql:
+        image: mysql:5.7
+        environment:
+            MYSQL_DATABASE: app
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: admin
+        volumes:
+            - "db-data:/var/lib/mysql"
+        ports:
+            - "4306:3306"
+        restart: always
+volumes:
+    db-data:
