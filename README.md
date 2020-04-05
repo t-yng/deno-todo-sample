@@ -1,6 +1,14 @@
 # deno-todo-sample
 This is Todo sample application with Deno to study.
 
+## Setup
+
+```
+$ docker-compose up -d
+$ deno fetch package.ts
+$ ./db/migration/migrate.sh
+```
+
 ## 実行確認方法
 
 curlでAPIを叩く

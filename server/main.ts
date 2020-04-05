@@ -1,4 +1,4 @@
-import { Application } from './package.ts';
+import { Application } from '../package.ts';
 import { router } from './router.ts';
 
 const app = new Application();
