@@ -18,7 +18,7 @@ curlでAPIを叩く
 ### 環境構築TODO
 * Docker構築
   * [x] Denoの開発環境
-  * [ ] MySQL構築
+  * [x] MySQL構築
 
 ### 実装TODO
 * API実装
@@ -35,3 +35,8 @@ curlでAPIを叩く
   * [ ] TODOの読み込み
   * [ ] TODOの更新
   * [ ] TODOの削除
+
+### リファクタ
+
+* [ ] DBのマイグレーションの実行を自動化する
+* [ ] deno_mysqlを[denolib/typeorm](https://github.com/denolib/typeorm)に置き換える
