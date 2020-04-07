@@ -5,7 +5,7 @@ services:
             context: .
             dockerfile: ./docker/deno/Dockerfile
         volumes:
-            - ./server:/app
+            - ./server:/app/server
         ports:
             - "8000:8000"
         depends_on:
