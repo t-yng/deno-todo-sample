@@ -11,7 +11,17 @@ $ ./db/migration/migrate.sh
 
 ## 実行確認方法
 
-curlでAPIを叩く
+### TODO一覧の取得
+
+```
+$ curl localhost:8000
+```
+
+### TODOの作成
+
+```
+$ curl -XPOST localhost:8000/api/todos -H "Content-Type: application/json;"  -d '{"content": "test"}'
+```
 
 ## TODO
 
@@ -22,17 +32,17 @@ curlでAPIを叩く
 
 ### 実装TODO
 * API実装
-  * [ ] TODOの作成
+  * [x] TODOの作成
     * POSTリクエスト
-  * [ ] TODOの読み込み
+  * [x] TODOの読み込み
     * GETリクエスト JSONで一覧を返す
   * [ ] TODOの更新
     * PUTリクエスト
   * [ ] TODOの削除
     * DELETEリクエスト
 * DBのCRUD実装
-  * [ ] TODOの作成
-  * [ ] TODOの読み込み
+  * [x] TODOの作成
+  * [x] TODOの読み込み
   * [ ] TODOの更新
   * [ ] TODOの削除
 
