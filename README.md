@@ -38,13 +38,13 @@ $ curl -XPOST localhost:8000/api/todos -H "Content-Type: application/json;"  -d 
     * GETリクエスト JSONで一覧を返す
   * [ ] TODOの更新
     * PUTリクエスト
-  * [ ] TODOの削除
+  * [x] TODOの削除
     * DELETEリクエスト
 * DBのCRUD実装
   * [x] TODOの作成
   * [x] TODOの読み込み
   * [ ] TODOの更新
-  * [ ] TODOの削除
+  * [x] TODOの削除
 
 ### リファクタ
 
