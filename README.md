@@ -23,6 +23,16 @@ $ curl localhost:8000
 $ curl -XPOST localhost:8000/api/todos -H "Content-Type: application/json;"  -d '{"content": "test"}'
 ```
 
+### TODOの削除
+```
+$ curl -XDELETE localhost:8000/api/todos/1
+```
+
+### TODOの更新
+```
+$ curl -XPUT localhost:8000/api/todos/1 -H "Content-Type: application/json;"  -d '{"content": "yes! yes!! yes!!!"}'
+```
+
 ## TODO
 
 ### 環境構築TODO
@@ -36,14 +46,14 @@ $ curl -XPOST localhost:8000/api/todos -H "Content-Type: application/json;"  -d 
     * POSTリクエスト
   * [x] TODOの読み込み
     * GETリクエスト JSONで一覧を返す
-  * [ ] TODOの更新
+  * [x] TODOの更新
     * PUTリクエスト
   * [x] TODOの削除
     * DELETEリクエスト
 * DBのCRUD実装
   * [x] TODOの作成
   * [x] TODOの読み込み
-  * [ ] TODOの更新
+  * [x] TODOの更新
   * [x] TODOの削除
 
 ### リファクタ
