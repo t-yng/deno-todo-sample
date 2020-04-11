@@ -10,6 +10,20 @@ router
         const todos = await client.query(`select * from todos`);
         ctx.response.body = JSON.stringify({ todos });
     })
+    .delete('/api/todos/:id', async (ctx) => {
+        try {
+            await client.execute(`DELETE FROM todos where id = ?`, [
+                ctx.params.id,
+            ]);
+        } catch (error) {
+            console.error(error);
+            ctx.response.status = 500;
+            ctx.response.body = 'Internal Server Error';
+            return;
+        }
+
+        ctx.response.status = 204;
+    })
     .post('/api/todos', async (ctx) => {
         let body;
         try {
