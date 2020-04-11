@@ -1,4 +1,5 @@
 CREATE TABLE todos (
-	id int not null primary key,
-	content text not null
-);
+    id INT NOT NULL AUTO_INCREMENT,
+    content TEXT NOT NULL,
+    PRIMARY KEY (`id`)
+) DEFAULT CHARSET=utf8;
