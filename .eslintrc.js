@@ -10,6 +10,10 @@ module.exports = {
         sourceType: "module",
         project: "./tsconfig.json",
     },
+    globals: {
+        "Deno": "readonly",
+        "console": "readonly",
+    },
     rules: {
         "prettier/prettier": [
             "error",
