@@ -11,7 +11,6 @@ USER deno
 # Cache the dependencies as a layer (the following two steps are re-run only when deps.ts is modified).
 # Ideally fetch package.ts will download and compile _all_ external files used in main.ts.
 ADD package.ts .
-ADD modules/ ./modules/
 RUN deno fetch package.ts
 
 # These steps will be re-run upon each file change in your working directory:
