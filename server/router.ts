@@ -1,5 +1,5 @@
 import { Router, BodyType } from '../package.ts';
-import { client } from './db.ts';
+import { Todo } from './db/models/todo.ts';
 export const router = new Router();
 
 router
@@ -7,14 +7,12 @@ router
         ctx.response.body = 'Hello, World 🦕';
     })
     .get('/api/todos', async (ctx) => {
-        const todos = await client.query(`select * from todos`);
+        const todos = await Todo.list();
         ctx.response.body = JSON.stringify({ todos });
     })
     .delete('/api/todos/:id', async (ctx) => {
         try {
-            await client.execute(`DELETE FROM todos where id = ?`, [
-                ctx.params.id,
-            ]);
+            await Todo.delete(Number(ctx.params.id));
         } catch (error) {
             console.error(error);
             ctx.response.status = 500;
@@ -48,10 +46,10 @@ router
 
         const { content } = body.value;
         try {
-            await client.execute('UPDATE todos SET content = ? WHERE id = ?', [
-                content,
-                id,
-            ]);
+            await Todo.update({
+                id: Number(id),
+                content: content,
+            });
         } catch (error) {
             console.error(error);
             ctx.response.status = 500;
@@ -85,9 +83,9 @@ router
         const todo = body.value;
 
         try {
-            await client.query('INSERT INTO todos(content) values(?)', [
-                todo.content,
-            ]);
+            await Todo.insert({
+                content: todo.content,
+            });
         } catch (error) {
             console.error(error);
             ctx.response.status = 500;
