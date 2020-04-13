@@ -1,5 +1,5 @@
 import { Router, BodyType } from '../package.ts';
-import { client } from './db.ts';
+import { Todo } from './db/models/todo.ts';
 export const router = new Router();
 
 router
@@ -7,37 +7,18 @@ router
         ctx.response.body = 'Hello, World 🦕';
     })
     .get('/api/todos', async (ctx) => {
-        const todos = await client.query(`select * from todos`);
+        const todos = await Todo.list();
         ctx.response.body = JSON.stringify({ todos });
     })
     .delete('/api/todos/:id', async (ctx) => {
-        try {
-            await client.execute(`DELETE FROM todos where id = ?`, [
-                ctx.params.id,
-            ]);
-        } catch (error) {
-            console.error(error);
-            ctx.response.status = 500;
-            ctx.response.body = 'Internal Server Error';
-            return;
-        }
-
+        await Todo.delete(Number(ctx.params.id));
         ctx.response.status = 204;
     })
     .put('/api/todos/:id', async (ctx) => {
         const id = ctx.params.id;
-        let body;
-
-        try {
-            // Warning: リクエストBodyは英字のみ有効
-            // 日本語をBodyに含めると文字化けが発生して内部のJOSN.parse()でエラーが発生する
-            body = await ctx.request.body();
-        } catch (error) {
-            console.error(error);
-            ctx.response.status = 500;
-            ctx.response.body = 'Internal Server Error';
-            return;
-        }
+        // Warning: リクエストBodyは英字のみ有効
+        // 日本語をBodyに含めると文字化けが発生して内部のJOSN.parse()でエラーが発生する
+        const body = await ctx.request.body();
 
         // Content-Type: appliacation/json 以外は受け付けない
         if (body.type !== BodyType.JSON) {
@@ -47,32 +28,17 @@ router
         }
 
         const { content } = body.value;
-        try {
-            await client.execute('UPDATE todos SET content = ? WHERE id = ?', [
-                content,
-                id,
-            ]);
-        } catch (error) {
-            console.error(error);
-            ctx.response.status = 500;
-            ctx.response.body = 'Internal Server Error';
-            return;
-        }
+        await Todo.update({
+            id: Number(id),
+            content: content,
+        });
 
         ctx.response.status = 204;
     })
     .post('/api/todos', async (ctx) => {
-        let body;
-        try {
-            // Warning: リクエストBodyは英字のみ有効
-            // 日本語をBodyに含めると文字化けが発生して内部のJOSN.parse()でエラーが発生する
-            body = await ctx.request.body();
-        } catch (error) {
-            console.error(error);
-            ctx.response.status = 500;
-            ctx.response.body = 'Internal Server Error';
-            return;
-        }
+        // Warning: リクエストBodyは英字のみ有効
+        // 日本語をBodyに含めると文字化けが発生して内部のJOSN.parse()でエラーが発生する
+        const body = await ctx.request.body();
 
         // Content-Type: appliacation/json 以外は受け付けない
         if (body.type !== BodyType.JSON) {
@@ -83,17 +49,9 @@ router
 
         // {"content": "xxxxx"}
         const todo = body.value;
-
-        try {
-            await client.query('INSERT INTO todos(content) values(?)', [
-                todo.content,
-            ]);
-        } catch (error) {
-            console.error(error);
-            ctx.response.status = 500;
-            ctx.response.body = 'Internal Server Error';
-            return;
-        }
+        await Todo.insert({
+            content: todo.content,
+        });
 
         ctx.response.status = 201;
     });

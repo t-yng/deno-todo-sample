@@ -1,8 +1,10 @@
 import { Application } from '../package.ts';
 import { router } from './router.ts';
+import { handleError } from './handleError.ts';
 
 const app = new Application();
 
+app.use(handleError);
 app.use(router.routes());
 app.use(router.allowedMethods());
 
